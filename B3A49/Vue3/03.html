@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>033</title>
+    <style>
+        h1{
+        font-size: 35px;
+        color: indianred;
+        margin: 10px;
+        }
+        p{
+        font-size: 30px;
+        margin: 10px;
+        }
+        div {
+        font-size: 25px;
+        margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>匯率轉換器</h1>
+        <p>1日幣 ＝0.3台幣</p>
+        <p>1美金 ＝30台幣</p>
+        <div>台幣：<input type="text" v-model='twd'></div>
+        <div>日幣：<input type="text" v-model='jpy'></div>
+        <div>美幣：<input type="text" v-model='usd'></div>
+        <div>人民幣：<input type="text" v-model='CNY'></div>
+    </div>
+
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    twd : 0.278,
+                }
+            },
+            computed: {
+                jpy:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)/0.3).toFixed(3);
+                    },
+                    set(val){
+                        this.twd = Number.parseFloat(Number(val)*0.3).toFixed(3);
+                    }
+                },
+                usd:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)/30).toFixed(3)
+                    },
+                    set(val){
+                        this.twd = Number.parseFloat(Number(val)*30).toFixed(3)
+                    }
+                },
+                CNY:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)*4).toFixed(3)
+                    },
+                    set(val){
+                        this.twd = Number.parseFloat(Number(val)/4).toFixed(3)
+                    }
+                }
+             },
+        }).mount('#app')
+    </script>
+</body>
+</html>
