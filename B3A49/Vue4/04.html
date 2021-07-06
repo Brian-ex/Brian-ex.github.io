@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>vue</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <script src="https://unpkg.com/vue@next"></script>
+  <style>
+    h{
+      font-size: 25px;
+      color: firebrick;
+    }
+    p{
+      color: slategrey;
+    }
+    div {
+      font-size: 18px;
+      color:black;
+      margin: 15px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div id="app">
+  <h>水果行</h>  
+  <form id="form01">
+    姓名: <input v-model="message" type="text" name="name01" value="蔡秉軒"><br>
+    收件住址: <input v-model="message1" type="text" name="address01" value="高雄市鳳山區光復路一段112號五樓"><br>
+    電話: <input v-model="message2" type="tel" name="tel01" value="0979112555"><br>
+    電子郵件: <input v-model="message3" type="email" name="email01" value="34partytime@gmail.com"><br>
+    指定送貨日期: <input v-model="message4" type="date" name="date01"><br>
+    水果種類: <br><input v-model="message5" type="radio" name="fruit" id="fruit01" value="愛文芒果(1箱)">愛文芒果(1箱) 475元<br>
+    <input v-model="message5" type="radio" name="fruit" id="fruit02" value="有機木瓜(6台斤)">有機木瓜(6台斤) 435元<br>
+    <input v-model="message5" type="radio" name="fruit" id="fruit03" value="黑鑽石桑葚(5台斤)">黑鑽石桑葚(5台斤) 749元<br>
+  </form>
+
+  <p>姓名: {{ message }}</p>
+  <p>收件地址: {{ message1 }}</p>
+  <p>電話: {{ message2 }}</p>
+  <p>電子郵件: {{ message3 }}</p>
+  <p>指定日期: {{ message4 }}</p>
+  <p>水果總類: {{ message5 }}</p>
+</div>
+
+
+<script>
+  const vm = Vue.createApp({
+    data() {
+      return {
+        message: '',
+        message1: '',
+        message2: '',
+        message3: '',
+        message4: '',
+        message5: ''
+      }
+    }
+  }).mount('#app');
+</script>
+
+
+</body>
+
+</html>
