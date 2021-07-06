@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Vue02</title>
+    <style>
+        #app1{
+          font-size: 20px;
+          color:darkgray;
+          margin: 10px;
+        }
+        div {
+          font-size: 25px;
+          color:  sienna;
+          margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app1">
+        <h1>{{message}}</h1>
+    </div>
+    <div id="app2">
+        <p>書本單價：{{price}}元</p>
+        <p>書本數量：{{quantity}}本</p>
+        <p>總金額共：{{price * quantity}}元</p>
+    </div>
+    <script>
+        const vm1 = Vue.createApp({
+            data() {
+                return {
+                    message:'書店明細'
+                }
+            },
+        }).mount('#app1')
+        const vm2 = Vue.createApp({
+            data() {
+                return {
+                    price:250,
+                    quantity:16
+                }
+            },
+        }).mount('#app2')
+    </script>
+</body>
+</html>
