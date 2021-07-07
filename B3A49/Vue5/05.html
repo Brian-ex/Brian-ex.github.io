@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Vue05</title>
+</head>
+<body>
+    <h1>匯率換算</h1>
+    <div id="app">
+    <form>
+        <input v-model= "twd" type="range" id="vol" name="vol" min="0" max="10000">
+    </form>
+    <label for="vol">Volume (between 0 and 10000): <span style="color:red;font-size:30px;font-weight: bolder;">{{twd}}</span></label>
+    <div>台幣：<input v-model= "twd" type="text" v-model='twd'></div>
+    <div>日幣：<input v-model= "jpy" type="text" v-model='jpy'></div>
+    <div>美幣：<input v-model= "usd" type="text" v-model='usd'></div>
+    <div>人民幣：<input v-model= "CNY" type="text" v-model='CNY'></div>
+    </div>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    twd : 0.278
+                }
+            },
+            computed: {
+                jpy:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)/0.3).toFixed(3);
+                    },
+                    set(val){
+                        this.twd = Number.parseFloat(Number(val)*0.3).toFixed(3);
+                    }
+                },
+                usd:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)/30).toFixed(3)
+                    },
+                    set(val){
+                        this.twd = Number.parseFloat(Number(val)*30).toFixed(3)
+                    }
+                },
+                CNY:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)*4).toFixed(3)
+                    },
+                    set(val){
+                        this.twd = Number.parseFloat(Number(val)/4).toFixed(3)
+                    }
+                }
+             },
+        }).mount('#app')
+    </script>
+    
+</div>
+</body>
+</html>
