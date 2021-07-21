@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for用於table</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <script src="https://unpkg.com/vue@next"></script>
+  <style>
+    div {
+      font-size: 15px;
+      color: darkgrey;
+      margin: 5px;
+    }
+
+    span {
+      font-size: 15px;
+      color: burlywood;
+      margin: 5px;
+    }
+
+    p {
+      font-size: 15px;
+      color: maroon;
+    }
+
+    img {
+      width:70%;
+    }
+
+    label {
+      margin-right: 0.5rem;
+      font-size: 15px;
+      color: maroon;
+    }
+
+    th{
+      font-size: 15px;
+      color: darkorange;
+    }
+
+    sup{
+      color: darkgrey;
+    }
+    sub{
+      color: darkgrey;
+    }
+    </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2 style="color:maroon;"><b>{{ message1 }}</b><sup>{{ message2 }}</sup><sub>{{ message3 }}</sub></h2>
+
+    <form style="margin: 1rem 0">
+      <label>
+        <input type="checkbox" value="名稱" v-model="checkName" value="名稱">名稱
+      </label>
+      <label>
+        <input type="checkbox" value="價格" v-model="checkName" value="價格">價格
+      </label>
+      <label>
+        <input type="checkbox" value="甜度" v-model="checkName" value="甜度">甜度
+      </label>
+      <label>
+        <input type="checkbox" value="熱量" v-model="checkName" value="熱量">熱量
+      </label>
+    </form>
+
+    <p>您所選得是:<span>{{ checkName.join(',') }}</span></p>
+
+    <table border="2" width="70%" cellspacing="5" cellpadding="5">
+      <tr>
+        <th>品項</th>
+        <th v-for="m in coffee">
+          <div><img v-bind:src="m.cover" alt="photo"></div>
+        </th>
+      </tr>
+      <tr v-show="checkName.includes('名稱')" >
+        <th>名稱</th>
+        <td v-for="m in coffee">
+          <div style="color: tomato;">{{ m.name }}</div>
+        </td>
+        <tr v-show="checkName.includes('價格')">
+            <th>價格</th>
+            <td v-for="m in coffee">
+              <div>{{ m.price }}</div>
+            </td>
+          </tr>
+      </tr>
+      <tr v-show="checkName.includes('甜度')">
+        <th>甜度</th>
+        <td v-for="m in coffee">
+          <div>{{ m.sweetness }}</div>
+        </td>
+      </tr>
+      <tr v-show="checkName.includes('熱量')">
+        <th>熱量</th>
+        <td v-for="m in coffee">
+          <div>{{ m.calories }}</div>
+        </td>
+      </tr>
+    </table>
+    <a :href="link" targer="_blank">{{more}}</a>
+  </div>
+
+  <script>
+    const vm = Vue.createApp({
+      data() {
+        return {
+          coffee: [
+            {
+              cover: "pic01.jpeg",
+              name:"美式咖啡",
+              price: "95~125元",
+              sweetness: "低",
+              calories: "20~34kcal",
+            },
+            {
+              cover: "pic02.jpeg",
+              name:"焦糖瑪奇朵",
+              price: "140~170元",
+              sweetness: "高",
+              calories: "279~475kcal",
+            },
+            {
+              cover: "pic03.jpeg",
+              name:"醇濃抹茶那堤",
+              price: "135~165元",
+              sweetness: "中",
+              calories: "331~570kcal",
+            },
+            {
+              cover: "pic04.jpeg",
+              name:"抹茶咖啡",
+              price: "145~175元",
+              sweetness: "中偏低",
+              calories: "180~301kcal",
+            },
+            {
+              cover: "pic05.jpeg",
+              name:"摩卡可可碎片星冰樂",
+              price: "145~185元",
+              sweetness: "高",
+              calories: "353~629kcal",
+            },
+          ],
+          message1: "星巴克咖啡",
+          message2: "推",
+          message3: "薦",
+          link:'https://www.starbucks.com.tw/products/drinks/view.jspx?catId=1',
+          more:'More',
+          checkName: [],
+        };
+      },
+    });
+    vm.mount('#app');
+  </script>
+</body>
+
+</html>
