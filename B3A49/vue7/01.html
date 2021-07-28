@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+    <style>
+        button{
+            width: 90px;
+            height: 70px;
+        }
+        tr:first-child{
+            height: 50px;
+            font-size: xx-large;
+            background-color: cornsilk;
+        }
+        table{
+            height: 80px;
+        }
+        P{
+            color:darkorange;
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+            <P>{{title}}</P>
+            <table border="2" >
+                <tr>
+                    <td colspan="4" >{{count}}</td>
+                </tr>
+                <tr>
+                    <td><button @click = "increase(1)">+1</button></td>
+                    <td><button @click = "increase(2)">+2</button></td>
+                    <td><button @click = "increase(3)">+3</button></td>
+                    <td><button @click = "reset(0)">重置</button</td>
+                </tr>
+                <tr>
+                    <td><button @click = "increase(4)">+4</button></td>
+                    <td><button @click = "increase(5)">+5</button></td>
+                    <td><button @click = "increase(6)">+6</button></td>
+                </tr>
+                <tr>
+                    <td><button @click = "increase(7)">+7</button></td>
+                    <td><button @click = "increase(8)">+8</button></td>
+                    <td><button @click = "increase(9)">+9</button></td>
+                </tr>
+    
+            </table>
+    </div>
+
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    title:'加法計算器',
+                    count:0
+                }
+            },
+            methods: {
+                increase: function(amount){
+                    this.count += amount;
+                },
+                reset: function(amount){
+                    this.count *= amount;
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
