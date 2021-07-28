@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<style>
+    h2 {
+        font-weight: bold;
+    }
+    h3 {
+        color:  slategrey;
+        font-weight: bold;
+    }
+
+    button {
+        color: rosybrown;
+        font-weight: bold;
+    }
+    span{
+        color:  darkorange;
+        font-weight: bold;
+    }
+
+</style>
+<body>
+    <h3>顯示點擊次數</h3>
+    <div id="app">
+        <button-counter></button-counter>
+    </div>
+    <script>
+        const app = Vue.createApp({})
+    
+        app.component('button-counter', {
+            data() {
+                return {
+                    count: 0
+                }
+            },
+    
+            template:
+            '<button v-on:click="count = count + 1 ">\n' +
+            'You clicked me {{ count }} times.' +
+            '</button><br>' +
+            '<h2>你點擊我<span>{{ count }}</span>次了</h2>'
+        }).mount('#app')
+    </script>
+</body>
+</html>
