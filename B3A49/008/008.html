@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="a">
+        <ul>
+            <li v-for="(item,index) in arr">{{index}}/{{ item }}</li>
+        </ul>
+    </div>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    arr : ['008', 'JS', 'is', 'awesome']
+                }
+            }
+        }).mount('#a')
+    </script> -->
+    <div id="app">
+        <hello v-for="p in people" :person="p" :key="p.id">
+    </div>
+    <script>  
+        const app = Vue.createApp({
+            data() { 
+                return { 
+                    people: 
+                        [{ id: 0, name: "mary" }, 
+                         { id: 1, name: "jane" }, 
+                         { id: 2, name: "bob" }] 
+                }; 
+            }
+        }); 
+        app.component("hello", { 
+            props: ["person"], 
+            template: `<p>hello {{person.name}}</p>` 
+        }).mount("#app");
+    </script>
+    <!-- <div id="ap">
+        <h3>{{msg}}</h3>
+        <my-component :parent-msg='msg'></my-component>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    msg: '這是外層元件的msg',
+                }
+            },
+        });
+
+        app.component('my-component', {
+            template: `
+            <div class='component'>
+                <div>從props來的parentMsg ==> {{parentMsg}}</div>
+                <div>自己的msg ==> {{msg}}</div>
+            </div>`,
+            props:['parentMsg'],
+            data() {
+                return {
+                    msg :'這是子元件的msg',
+                }
+            },
+        }).mount('#ap')
+    </script> -->
+</body>
+
+</html>
