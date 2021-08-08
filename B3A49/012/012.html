@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="app">
+        <blog-post title="helloWorld"></blog-post>
+    </div> -->
+    <!-- <script>
+        const app = Vue.createApp({
+            // data() {
+            //     return {
+            //         helloWorld:'123',
+            //     }
+            // },
+        });
+        app.component('blog-post',{
+            props:['title'],
+            template:`
+                <h1>{{title}}</h1>
+            `
+        }).mount('#app')
+    </script> -->
+    <body>
+        <div id="app">
+            <todo-item v-for="t of todos" :todo="t" :key="t.id"></todo-item>
+        </div>
+        <script>  
+            const app = Vue.createApp({ 
+                data() { 
+                    return { 
+                        todos: 
+                            [{ id: 1, name: "eat" }, 
+                            { id: 2, name: "drink" }, 
+                            { id: 3, name: "sleep" }] 
+                    }; 
+                } 
+            }); 
+            app.component("todo-item", { 
+                props: ["todo"], 
+                template: `<p>{{ todo.name }}</p>` 
+            }).mount("#app");
+        </script>
+</body>
+</html>
