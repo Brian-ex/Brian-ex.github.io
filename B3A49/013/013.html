@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>App</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{count}}
+        <div>
+            <button-counter button-name="Click me" @click-plus="count = $event"></button-counter>
+        </div>
+        
+        <!-- <div :style="{ 'font-size': `${fontSize}px` }">
+            <todo-item @enlarge-text="fontSize++" v-for="t of todos" :todo="t" :key="t.id"></todo-item>
+        </div> -->
+    </div>
+    <script>  
+        // const app = Vue.createApp({ 
+        //     data() { 
+        //         return { 
+        //             fontSize: 15, 
+        //             todos: [{ id: 1, name: "eat" }, 
+        //                     { id: 2, name: "drink" }, 
+        //                     { id: 3, name: "sleep" }] 
+        //         }; 
+        //     }
+        // }); 
+        // app.component("todo-item", { 
+        //     props: ["todo"], 
+        //     template: `  
+        //         <div>  
+        //             <p>{{ todo.name }}</p>  
+        //             <button @click="$emit('enlarge-text')"> Enlarge text  </button>  
+        //         </div>  ` 
+        // }).mount("#app");
+        const app = Vue.createApp({
+            data() {
+                return {
+                    count : 0,
+                }
+            },
+        })
+        app.component('button-counter', {
+            template: `
+                <button @click="clickPlus">
+                    {{buttonName}} {{count}} times
+                </button>
+                `,
+                props: ['buttonName'],
+                data() {
+                    return {
+                        count: 0,
+                    };
+                },
+                methods: {
+                    clickPlus() {
+                        this.count += 1;
+                        this.$emit('click-plus', this.count);
+                    }
+                }
+        }).mount('#app')
+    </script>
+</body>
+</html>
