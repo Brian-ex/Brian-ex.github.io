@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<!-- <body> -->
+    <!-- <div id="app">
+        <div :style="{ 'font-size': `${fontSize}px` }">
+            <todo-item @enlarge-text="fontSize += $event" v-for="t of todos" :todo="t" :key="t.id"></todo-item>
+        </div>
+    </div>
+    <script>  
+        const app = Vue.createApp({ 
+            data() { 
+                return { 
+                    fontSize: 15, 
+                    todos: [{ id: 1, name: "eat" }, 
+                            { id: 2, name: "drink" }, 
+                            { id: 3, name: "sleep" }] 
+                }; 
+            } 
+        }); 
+        app.component("todo-item", { 
+            props: ["todo"], 
+            template: `  
+                <div>  
+                    <p>{{ todo.name }}</p>  
+                    <button @click="$emit('enlarge-text', 1)">  Enlarge text  </button>  
+                </div>  ` 
+        }).mount("#app");
+    </script> -->
+    
+    <body>
+        <div id="app">
+            <div :style="{ 'font-size': `${fontSize}px` }">
+                <todo-item @enlarge-text="onEnlargeText" v-for="t of todos" :todo="t" :key="t.id"></todo-item>
+            </div>
+        </div>
+        <script>  
+            const app = Vue.createApp({ 
+                data() { 
+                    return { 
+                        fontSize: 15, 
+                        todos: [{ id: 1, name: "eat" }, 
+                                { id: 2, name: "drink" }, 
+                                { id: 3, name: "sleep" }] 
+                    }; 
+                }, 
+                methods: { 
+                    onEnlargeText(amount) { 
+                        this.fontSize += amount; 
+                    } 
+                } 
+            }); 
+            app.component("todo-item", { 
+                props: ["todo"], 
+                template: `  
+                    <div>  
+                        <p>{{ todo.name }}</p> 
+                        <button @click="$emit('enlarge-text', 1)">  Enlarge text  </button>  
+                    </div>  ` 
+            }).mount("#app");
+        </script>
+    </body>
+    
+    </html>
+</body>
+
+</html>
